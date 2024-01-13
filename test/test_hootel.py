@@ -58,3 +58,67 @@ class TestHootel(object):
         hotel_list = self.browser.find_elements(By.XPATH, '//h4[@style="cursor: pointer"]')
         assert len(hotel_list) != 0
         assert len(hotel_list) == 10
+
+# házi feladat
+    # TC1 - checkbox
+    def test_hotel_checkbox(self):
+        hotel_list_btn = self.browser.find_element(By.XPATH, '//button[@class="btn btn-outline-primary btn-block"]')
+        hotel_list_btn.click()
+        time.sleep(1)
+
+        checkbox_list = self.browser.find_elements(By.XPATH, '//input[@type="checkbox"]')
+        for checkbox in checkbox_list:
+            checkbox.click()
+            assert checkbox.is_selected()
+
+    # TC2 - tetszőleges hotel oldal
+    def test_hotel_page(self):
+        hotel_list_btn = self.browser.find_element(By.XPATH, '//button[@class="btn btn-outline-primary btn-block"]')
+        hotel_list_btn.click()
+        time.sleep(1)
+
+        first_hotel = self.browser.find_element(By.XPATH, '//h4[@style="cursor: pointer"]')
+        first_hotel.click()
+        time.sleep(1)
+
+        back_btn = self.browser.find_element(By.XPATH, '//button[@class="btn btn-outline-primary"]')
+        assert back_btn
+
+    # TC3 - hosszú leírás
+    def test_hotel_description(self):
+        hotel_list_btn = self.browser.find_element(By.XPATH, '//button[@class="btn btn-outline-primary btn-block"]')
+        hotel_list_btn.click()
+        time.sleep(1)
+
+        hotel_description = self.browser.find_elements(By.XPATH, '//p[@class="card-text"]')[1]
+        print(hotel_description.text)
+
+        assert hotel_description
+
+    # TC4 - leiras hossza
+    def test_hotel_desclength(self):
+        hotel_list_btn = self.browser.find_element(By.XPATH, '//button[@class="btn btn-outline-primary btn-block"]')
+        hotel_list_btn.click()
+        time.sleep(1)
+
+        hotel_description = self.browser.find_elements(By.XPATH, '//p[@class="card-text"]')[1]
+        print(hotel_description.text)
+
+        assert 500 <= len(hotel_description.text) <= 2000
+
+    # TC5 - vissza
+    def test_hotel_visszahotellista(self):
+        hotel_list_btn = self.browser.find_element(By.XPATH, '//button[@class="btn btn-outline-primary btn-block"]')
+        hotel_list_btn.click()
+        time.sleep(1)
+
+        first_hotel = self.browser.find_element(By.XPATH, '//h4[@style="cursor: pointer"]')
+        first_hotel.click()
+        time.sleep(1)
+
+        back_btn = self.browser.find_element(By.XPATH, '//button[@class="btn btn-outline-primary"]')
+        back_btn.click()
+        time.sleep(5)
+
+        first_hotel = self.browser.find_element(By.XPATH, '//h4[@style="cursor: pointer"]')
+        assert first_hotel
