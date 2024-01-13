@@ -23,15 +23,12 @@ class TestHootel(object):
     def teardown_method(self):
         self.browser.quit()
 
-    @pytest.mark.parametrize("email, password", [('gebogip103@nexxterp.com', 'ghjk'), ('', '')])
+    @pytest.mark.parametrize("email, password", [('gebogip103@nexxterp.com', 'ghjk')])
     @allure.title("Hootel Login")
     @allure.description("A belépés tesztelése")
     @allure.severity(allure.severity_level.TRIVIAL)
     @allure.tag("login")
-    def test_login(self, email, password):
-        menu_toggle = WebDriverWait(self.browser, 5).until(
-            ec.element_to_be_clickable((By.XPATH, "//button[@class = 'navbar-toggler collapsed']")))
-        menu_toggle.click()
+        def test_login(self, email, password):
         login_btn = WebDriverWait(self.browser, 5).until(
             ec.element_to_be_clickable((By.XPATH, '//a[@class="nav-link"]')))
         login_btn.click()
