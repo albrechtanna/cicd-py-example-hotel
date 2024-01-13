@@ -25,9 +25,14 @@ class TestHootel(object):
     @allure.severity(allure.severity_level.TRIVIAL)
     @allure.tag("login")
     def test_login(self, email, password):
-        login_btn = self.browser.find_element(By.XPATH, '//a[@class="nav-link"]')
+        menu_toggle = WebDriverWait(self.browser, 5).until(
+            ec.element_to_be_clickable((By.XPATH, "//button[@class = 'navbar-toggler collapsed']")))
+        menu_toggle.click()
+        login_btn = WebDriverWait(self.browser, 5).until(
+            ec.element_to_be_clickable((By.XPATH, '//a[@class="nav-link"]')))
         login_btn.click()
 
+        time.sleep(0.5)
         email_input = self.browser.find_element(By.ID, 'email')
         email_input.send_keys(email)
 
@@ -36,9 +41,8 @@ class TestHootel(object):
 
         submit_btn = self.browser.find_element(By.NAME, 'submit')
         submit_btn.click()
-        time.sleep(1)
 
-        logout_btn = self.browser.find_element(By.ID, 'logout-link')
+        logout_btn = WebDriverWait(self.browser, 5).until(ec.element_to_be_clickable((By.ID, "logout-link")))
 
         assert logout_btn.text == "Kilépés"
 
