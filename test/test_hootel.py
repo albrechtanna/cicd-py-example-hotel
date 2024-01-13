@@ -23,7 +23,7 @@ class TestHootel(object):
     def teardown_method(self):
         self.browser.quit()
 
-    @pytest.mark.parametrize("email, password", [('hiwasi1765@wisnick.com', 'tesztelek2021'), ('', '')])
+    @pytest.mark.parametrize("email, password", [('gebogip103@nexxterp.com', 'ghjk'), ('', '')])
     @allure.title("Hootel Login")
     @allure.description("A belépés tesztelése")
     @allure.severity(allure.severity_level.TRIVIAL)
